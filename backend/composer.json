@@ -1,0 +1,20 @@
+{
+    "name": "paleto/backend",
+    "authors": [
+        {
+            "name": "paleto30",
+            "email": "paleto0817@gmail.com"
+        }
+    ],
+    "require": {
+        "bramus/router": "1.6",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\":"app/",
+            "Config\\":"config/",
+            "Routes\\":"routes/"
+        }
+    }
+}
