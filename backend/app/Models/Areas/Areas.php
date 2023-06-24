@@ -4,6 +4,7 @@ namespace App\Models\Areas;
 
 use Config\Database\Conexion;
 use Exception;
+use PDO;
 
 class  Areas
 {
@@ -30,7 +31,7 @@ class  Areas
     }
 
 
-
+    //  consultar en la tabala areas todos los registros
     public static function getAllAreas()
     {
         try {
@@ -39,12 +40,36 @@ class  Areas
             $query = "SELECT * FROM areas";
             $stament = $db->connect()->prepare($query); 
             $stament->execute();
+            $areas = $stament->fetchAll(PDO::FETCH_ASSOC);
             
+            return $areas;
 
         } catch (\Exception $e) {
             return $e->getMessage();
         }
     }
+
+
+    
+    // consultar en la tabla areas un registro por id
+    public static function  Find($id)
+    {
+        try {
+            $db = new Conexion;
+
+            $query = "SELECT * from areas WHERE id = ?";
+            $stament = $db->connect()->prepare($query);
+            $stament->execute([$id]);
+            $area = $stament->fetch(PDO::FETCH_ASSOC);  
+            return $area;
+        } catch (\Exception $e) {
+            return  $e;
+        }
+    }  
+
+
+
+    
 
 
 }
