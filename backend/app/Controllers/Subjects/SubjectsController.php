@@ -86,9 +86,9 @@ class SubjectsController
     {
         try {
             
-            $datos = $_POST;
-            $oldSubject = SubjectsModel::Find($id);
+            $datos = json_decode(file_get_contents('php://input'),true);
 
+            $oldSubject = SubjectsModel::Find($id);
             if (isset($oldSubject)) {
                 $oldSubject->name_subject = $datos['name_subject'];
                 if ($oldSubject->update()) {

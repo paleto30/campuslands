@@ -36,14 +36,12 @@ class AreasController
     {
         try {
             $name_area = json_decode(file_get_contents('php://input'), true);
-
             if (!isset($name_area['name_area']) || empty(trim($name_area['name_area']))) {
                 echo json_encode([
                     'error' => "El atributo no existe o valor esta vacio",
                 ]);
                 return;
             }
-
 
             $area = new Areas(...$name_area);
             if ($area->save()) {
@@ -70,10 +68,11 @@ class AreasController
     public function updateArea($id)
     {
         try {
+            $datos = json_decode(file_get_contents('php://input'),true);
 
             $oldArea = Areas::Find($id);
             if (isset($oldArea)) {    
-                $oldArea->name_area = $_POST['name_area'];
+                $oldArea->name_area = $datos['name_area'];
                 if ($oldArea->update()) {
                     http_response_code(200);
                     echo json_encode([
