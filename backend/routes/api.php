@@ -41,6 +41,17 @@ $router->mount('/api/position',function() use($router){
 
 
 
+//rutas para Subjects
+$router->mount('/api/subject',function() use($router){
+    // ruta para obtener los registros
+    $router->get('/', 'App\Controllers\Subjects\SubjectsController@getAllSubjects');
+    // ruta para inserta un registro
+    $router->post('/','App\Controllers\Subjects\SubjectsController@insertSubject');
+    // ruta para actualizar un regustro 
+    $router->post('/{id}','App\Controllers\Subjects\SubjectsController@updateSubject');
+    // ruta para borrar un registro
+    $router->delete('/{id}','App\Controllers\Subjects\SubjectsController@deleteSubject');
+});
 
 
 

@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'paleto/backend',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '896e8ec32a6e1150675b87aa51633db43eba9e05',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -29,9 +29,9 @@
             'dev_requirement' => false,
         ),
         'paleto/backend' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '896e8ec32a6e1150675b87aa51633db43eba9e05',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
