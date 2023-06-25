@@ -18,6 +18,7 @@ class AreasController
         try {
             $areas = Areas::getAllAreas();
             echo json_encode($areas);
+            return;
         } catch (\Throwable $e) {
             echo  json_encode(['error' => $e->getMessage()]);
         }
@@ -40,17 +41,19 @@ class AreasController
                 echo json_encode([
                     'error' => "El atributo no existe o valor esta vacio",
                 ]);
-            } else {
-
-                $area = new Areas(...$name_area);
-                if ($area->save()) {
-                    $status = 201;
-                    http_response_code($status);
-                    echo json_encode([
-                        'message' => 'creado correctamente',
-                    ]);
-                }
+                return;
             }
+
+
+            $area = new Areas(...$name_area);
+            if ($area->save()) {
+                http_response_code(201);
+                echo json_encode([
+                    'message' => 'creado correctamente',
+                ]);
+                return;
+            }
+            
         } catch (\Throwable $th) {
             echo  json_encode(['error' => $th->getMessage()]);
         }
@@ -72,19 +75,26 @@ class AreasController
             if (isset($oldArea)) {    
                 $oldArea->name_area = $_POST['name_area'];
                 if ($oldArea->update()) {
+                    http_response_code(200);
                     echo json_encode([
                         'message' => "actualizado correctamente"
                     ]);
+                    return;
                 } else {
+                    http_response_code(304);
                     echo json_encode([
                         'message' => 'No se actualizo el registro'
                     ]);
+                    return;
                 }
-            }else{
-                echo json_encode([
-                    'message' => "No Existe el registro con id: $id"
-                ]);
             }
+
+            http_response_code(404);
+            echo json_encode([
+                'message' => "No Existe el registro con id: $id"
+            ]);
+            return;
+            
         } catch (\Throwable $th) {
             echo  json_encode(['error' => $th->getMessage()]);
         }
@@ -100,20 +110,23 @@ class AreasController
     public function deleteArea($id)
     {
         try {
-
             $existingArea = Areas::Find($id);
             if (isset($existingArea)) {
                 if ($existingArea->delete()) {
+                    http_response_code(200);
                     echo json_encode([
                         'message' => 'eliminado correctamente',
                         'data' => $existingArea->toString() 
                     ]);
+                    return;
                 }
-            }else{
-                echo json_encode([
-                    'message' => "No se puede eliminar, El registro no existe"
-                ]);
             }
+
+            http_response_code(404);
+            echo json_encode([
+                'message' => "No se puede eliminar, El registro no existe"
+            ]);               
+            return;
         } catch (\Throwable $th) {
             echo  json_encode(['error' => $th->getMessage()]);
         }
