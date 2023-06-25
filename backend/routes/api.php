@@ -13,52 +13,59 @@ $dotenv->load();
 
 
 
-// rutas para areas
+// rutas para areas   1
 $router->mount('/api/areas', function() use($router){
     // ruta para obtener todas las areas
     $router->get('/','App\Controllers\Areas\AreasController@getAllAreas');
     // ruta para crear una categoria 
     $router->post('/','App\Controllers\Areas\AreasController@insertArea');
     // ruta para actualizar una Area
-    $router->post('/{id}','App\Controllers\Areas\AreasController@updateArea');
+    $router->put('/{id}','App\Controllers\Areas\AreasController@updateArea');
     // ruta para eliminar un Area
     $router->delete('/{id}','App\Controllers\Areas\AreasController@deleteArea');
 }); 
 
 
 
-// rutas para position
+// rutas para position 2
 $router->mount('/api/position',function() use($router){
     // ruta  para obtener todas las positions
     $router->get('/', 'App\Controllers\Position\PositionController@getAllPositions');
     // ruta para agregar un registro en tabla position 
     $router->post('/', 'App\Controllers\Position\PositionController@insertPosition');
     // ruta para actualizar un registro de la tabla  position
-    $router->post('/{id}','App\Controllers\Position\PositionController@updatePositon');
+    $router->put('/{id}','App\Controllers\Position\PositionController@updatePositon');
     //ruta para eliminar un registro de la tabla position
     $router->delete('/{id}','App\Controllers\Position\PositionController@deletePosition');
 });
 
 
 
-//rutas para Subjects
+//rutas para Subjects 3
 $router->mount('/api/subject',function() use($router){
     // ruta para obtener los registros
     $router->get('/', 'App\Controllers\Subjects\SubjectsController@getAllSubjects');
     // ruta para inserta un registro
     $router->post('/','App\Controllers\Subjects\SubjectsController@insertSubject');
     // ruta para actualizar un regustro 
-    $router->post('/{id}','App\Controllers\Subjects\SubjectsController@updateSubject');
+    $router->put('/{id}','App\Controllers\Subjects\SubjectsController@updateSubject');
     // ruta para borrar un registro
     $router->delete('/{id}','App\Controllers\Subjects\SubjectsController@deleteSubject');
 });
 
 
 
-
-
-
-
+// rutas pata Locations 4 
+$router->mount('/api/location', function() use($router){
+    // ruta para obtener todos los registros
+    $router->get('/', 'App\Controllers\Locations\LocationController@getAllLocations');
+    // ruta para insertar un registro
+    $router->post('/', 'App\Controllers\Locations\LocationController@insertLocation');
+    // ruta para actualizar un registro
+    $router->put('/{id}', 'App\Controllers\Locations\LocationController@updateLocation');
+    // ruta para eliminar un registro 
+    $router->delete('/{id}', 'App\Controllers\Locations\LocationController@deleteLocation');
+});
 
 
 
