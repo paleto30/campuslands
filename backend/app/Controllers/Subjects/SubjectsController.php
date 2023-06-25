@@ -35,12 +35,10 @@ class SubjectsController
             
 
             $atribute = ['name_subject'];
-            $isValid = true;
-            
             // verificamos que los atributos no sean vacios y que tengan el nombre corecto
             foreach ($atribute as $key) {
                 if (!isset($datos[$key]) || empty(trim($datos[$key]))) {
-                    $isValid = false;
+                   
                     http_response_code(400);
                     echo  json_encode([
                         'error-message' => "Atributos incorrecto o Valores vacios"
@@ -51,7 +49,7 @@ class SubjectsController
             // verificamos que no hayan atributos que no corresponden al modelo
             $extraKey = array_diff(array_keys($datos), $atribute);
             if (!empty($extraKey)) {
-                $isValid = false;
+                
                 http_response_code(400);
                 echo  json_encode([
                     'error-message' => "Atributos que no corresponden al modelo"
@@ -60,20 +58,20 @@ class SubjectsController
             }
 
             // si llega valido en true , se guarda
-            if ($isValid) {
-                $subject = new SubjectsModel(...$datos);
-                if ($subject->save()) {
-                    http_response_code(201);
-                    echo json_encode(['message'=> 'creado correctamente']);
-                    return;
-                }
-
-                http_response_code(400);
-                echo json_encode([
-                    'error-message' => 'NO se a creado el registro'
-                ]);
+            
+            $subject = new SubjectsModel(...$datos);
+            if ($subject->save()) {
+                http_response_code(201);
+                echo json_encode(['message'=> 'creado correctamente']);
                 return;
             }
+
+            http_response_code(400);
+            echo json_encode([
+                'error-message' => 'NO se a creado el registro'
+            ]);
+            return;
+   
 
         } catch (\Throwable $th) {
             echo  json_encode(['error' => $th->getMessage()]);
