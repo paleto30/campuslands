@@ -82,7 +82,7 @@ class PositionModel
             if ($position->id !== null) {
                 return $position;
             }
-
+            
             return null;
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -119,7 +119,7 @@ class PositionModel
     public function update(){
         try {
             $db = new Conexion;
-            $query = "UPDATE areas SET name_position = ?, arl = ? WHERE id = ?";
+            $query = "UPDATE position SET name_position = ?, arl = ? WHERE id = ?";
             $stament = $db->connect()->prepare($query); 
             $stament->execute([$this->name_position, $this->arl, $this->id]);
             $db->closed();
