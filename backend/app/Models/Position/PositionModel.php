@@ -54,7 +54,7 @@ class PositionModel
             $stament = $db->connect()->prepare($query);
             $stament->execute();
             $positions = $stament->fetchAll(PDO::FETCH_ASSOC);
-            
+            $db->closed();
             return $positions;
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -102,7 +102,7 @@ class PositionModel
             $query = "INSERT INTO position (name_position, arl) VALUES ( ?, ?)";
             $stament = $db->connect()->prepare($query);
             $stament->execute([$this->name_position, $this->arl]);
-            
+            $db->closed();
             return true;
 
         } catch (\Exception $e) {
@@ -141,6 +141,7 @@ class PositionModel
             $query = "DELETE FROM position  where id = ?";
             $stament = $db->connect()->prepare($query);
             $stament->execute([$this->id]);
+            $db->closed();
             return true;
         } catch (\Exception $e) {
             return $e->getMessage();
