@@ -74,7 +74,7 @@ class SubjectsModel
             $stament->execute([$id]);
             $result = $stament->fetch(PDO::FETCH_ASSOC);            
             $subject = new self($result['name_subject'],$result['id']);
-
+            $db->closed();
             if ($subject->id !== null) {
                 return $subject;
             }

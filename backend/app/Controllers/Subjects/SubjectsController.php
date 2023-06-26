@@ -100,7 +100,7 @@ class SubjectsController
                 }
                 http_response_code(304);
                 echo json_encode([
-                    'message' => 'Actualizado correctamente'
+                    'message' => 'Actualizacion fallida'
                 ]);
                 return;                
             }
