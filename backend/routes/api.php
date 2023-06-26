@@ -69,6 +69,20 @@ $router->mount('/api/location', function() use($router){
 
 
 
+// rutas pata levels 5 
+$router->mount('/api/levels', function() use($router){
+    // ruta para obtener todos los registros
+    $router->get('/', 'App\Controllers\Levels\LevelsController@getAllLevels');
+    // ruta para insertar un registro
+    $router->post('/', 'App\Controllers\Levels\LevelsController@insertLevel');
+    // ruta para actualizar un registro
+    $router->put('/{id}', 'App\Controllers\Levels\LevelsController@updateLevel');
+    // ruta para eliminar un registro 
+    $router->delete('/{id}', 'App\Controllers\Levels\LevelsController@deleteLevel');
+});
+
+
+
 
 
 
