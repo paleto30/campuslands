@@ -69,7 +69,7 @@ $router->mount('/api/location', function() use($router){
 
 
 
-// rutas pata levels 5 
+// rutas para levels 5 
 $router->mount('/api/levels', function() use($router){
     // ruta para obtener todos los registros
     $router->get('/', 'App\Controllers\Levels\LevelsController@getAllLevels');
@@ -83,6 +83,17 @@ $router->mount('/api/levels', function() use($router){
 
 
 
+//  rutas para Journey 6
+$router->mount('/api/journey',function() use($router){
+    // ruta pera obtener todos los registros
+    $router->get('/','App\Controllers\Journey\JourneyController@getAllJourneys');
+    // ruta para insertar un registro
+    $router->post('/','App\Controllers\Journey\JourneyController@insertJourney');
+    // ruta para actualizar un registro
+    $router->put('/{id}','App\Controllers\Journey\JourneyController@updateJourney');
+    // ruta para eliminar un registro
+    $router->delete('/{id}','App\Controllers\Journey\JourneyController@deleteJourney');
+});
 
 
 
