@@ -39,9 +39,7 @@ class CountriesController
              foreach ($attribute as $key) {
                 if (!isset($datos[$key]) || empty(trim($datos[$key]))) {
                     http_response_code(400);
-                    echo  json_encode([
-                        'error-message' => "Atributos incorrecto o Valores vacios"
-                    ]);
+                    echo  json_encode(['error-message' => "Atributos incorrecto o Valores vacios"]);
                     return;
                 }
             }
@@ -50,9 +48,7 @@ class CountriesController
             $extraKey = array_diff(array_keys($datos), $attribute);
             if (!empty($extraKey)) {
                 http_response_code(400);
-                echo  json_encode([
-                    'error-message' => "Atributos que no corresponden al modelo"
-                ]);
+                echo  json_encode(['error-message' => "Atributos que no corresponden al modelo"]);
                 return;
             }
 
@@ -92,22 +88,16 @@ class CountriesController
                 $update_country->name_country = $datos['name_country'];
                 if ($update_country->update()) {
                     http_response_code(200);
-                    echo json_encode([
-                        'message' => 'Actualizado correctamente'
-                    ]);
+                    echo json_encode(['message' => 'Actualizado correctamente']);
                     return;
                 }
                 http_response_code(304);
-                echo json_encode([
-                    'message' => 'Actualizacion fallida'
-                ]);
+                echo json_encode(['message' => 'Actualizacion fallida']);
                 return;
             }
 
             http_response_code(404);
-            echo json_encode([
-                'error-message' => "El Registro id : $id no Existe"
-            ]);
+            echo json_encode(['error-message' => "El Registro id : $id no Existe"]);
             return;
         } catch (\Throwable $th) {
             echo json_encode(['error'=> $th]);
@@ -126,15 +116,11 @@ class CountriesController
         if (isset($update_country)) {
             if ($update_country->delete()) {
                 http_response_code(200);
-                echo json_encode([
-                    'message' => 'eliminado correctamente'
-                ]);
+                echo json_encode(['message' => 'eliminado correctamente']);
                 return;
             }
             http_response_code(400);
-            echo json_encode([
-                'message' => 'eliminacion fallida'
-            ]);
+            echo json_encode(['message' => 'eliminacion fallida']);
             return;
         }
     
