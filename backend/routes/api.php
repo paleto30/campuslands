@@ -97,6 +97,21 @@ $router->mount('/api/journey',function() use($router){
 
 
 
+// rutas para Countries 7
+$router->mount('/api/countries', function ()use($router){
+    // ruta para obtener countries
+    $router->get('/','App\Controllers\Countries\CountriesController@getAllCountries');
+    // ruta para insertar countries
+    $router->post('/','App\Controllers\Countries\CountriesController@insertCountry');
+    // ruta para actualizar countries
+    $router->put('/{id}','App\Controllers\Countries\CountriesController@updateCountry');
+    // ruta para eliminar countries
+    $router->delete('/{id}','App\Controllers\Countries\CountriesController@deleteCountry');
+});
+
+
+
+
 
 $router->run();
 ?>
