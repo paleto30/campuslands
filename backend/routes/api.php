@@ -110,6 +110,18 @@ $router->mount('/api/countries', function ()use($router){
 });
 
 
+// rutas para Rrgions 8
+$router->mount('/api/regions', function() use($router){
+    // ruta para obtener todos los registro s
+    $router->get('/', 'App\Controllers\Regions\RegionController@getAllRegions');
+    // ruta para insertar un registro
+    $router->post('/','App\Controllers\Regions\RegionController@insertRegion');
+    // ruta para actualizar un registro
+    $router->put('/{id}','App\Controllers\Regions\RegionController@updateRegion');
+    // ruta para borra un registro
+    $router->delete('/{id}','App\Controllers\Regions\RegionController@deleteRegion');
+});
+
 
 
 
