@@ -128,7 +128,7 @@ class JourneyController
                     return;
                 }
                 http_response_code(400);    
-                echo json_encode(['error-message' => '']);
+                echo json_encode(['message' => 'eliminacion fallida']);
                 return;
             }
 
